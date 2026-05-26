@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1628">
+<meta name="description" content="BusBros – profesjonalne mycie ciśnieniowe kostki brukowej, dachów, elewacji, tarasów i podjazdów. Barlinek, Gorzów, Stargard i okolice. Darmowa wycena!">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://busbros.pl/mycie.html">
+<title>Mycie Ciśnieniowe – BusBros | Kostka, Dach, Elewacja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0a1628;
+--navy-mid:#112240;
+--navy-light:#1d3461;
+--yellow:#F6E207;
+--yellow-bright:#fff35c;
+--yellow-pale:#fffde0;
+--white:#ffffff;
+--off-white:#f7f8fa;
+--gray-light:#e8edf5;
+--gray-mid:#8a9ab5;
+--gray-text:#3d4f6b;
+--radius:4px;
+--tr:0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+--sh-y:rgba(246,226,7,0.25);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--gray-text);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.03em;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:900;padding:0 2rem;transition:background var(--tr),box-shadow var(--tr);}
+.nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,0.3);}
+.nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;}
+.nav-logo{height:46px;width:auto;object-fit:contain;transition:transform var(--tr);}
+.nav-logo:hover{transform:scale(1.04);}
+.nav-controls{display:flex;align-items:center;gap:1.5rem;}
+.nav-socials{display:flex;align-items:center;gap:1rem;padding-right:1rem;border-right:1px solid rgba(255,255,255,0.15);}
+.nav-soc-btn{display:flex;align-items:center;justify-content:center;border-radius:4px;overflow:hidden;width:34px;height:34px;background:var(--white);}
+.nav-soc-btn img{width:100%;height:100%;object-fit:cover;transition:transform var(--tr);}
+.nav-soc-btn:hover img{transform:scale(1.15);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);position:relative;padding-bottom:3px;transition:color var(--tr);}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--yellow);transition:width var(--tr);}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-active{color:var(--yellow) !important;}
+.nav-active::after{width:100% !important;}
+.nav-cta{background:var(--yellow);color:var(--navy) !important;padding:0.55rem 1.4rem;border-radius:var(--radius);font-weight:800 !important;box-shadow:0 4px 16px var(--sh-y);transition:all var(--tr) !important;}
+.nav-cta::after{display:none !important;}
+.nav-cta:hover{background:var(--yellow-bright) !important;transform:translateY(-2px) !important;box-shadow:0 8px 24px var(--sh-y) !important;}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:5px;background:transparent;border:none;}
+.hamburger span{display:block;width:26px;height:2px;background:var(--white);border-radius:2px;transition:all 0.35s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{position:fixed;inset:0;background:rgba(10,22,40,0.99);z-index:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform 0.55s cubic-bezier(0.16,1,0.3,1);}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--white);transition:color var(--tr);}
+.mobile-menu a:hover{color:var(--yellow);}
+.mobile-menu .nav-cta{padding:0.85rem 2.5rem;font-size:1rem;border-radius:var(--radius);}
+
+.sticky-cta{position:fixed;bottom:1.4rem;right:1.4rem;z-index:850;display:flex;flex-direction:column;gap:0.6rem;opacity:0;transform:translateY(20px);transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none;}
+.sticky-cta.visible{opacity:1;transform:translateY(0);pointer-events:all;}
+.sticky-btn{display:flex;align-items:center;gap:0.55rem;padding:0.75rem 1.2rem;border-radius:50px;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;box-shadow:0 8px 28px rgba(0,0,0,0.3);transition:all var(--tr);white-space:nowrap;}
+.sticky-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.sticky-phone{background:var(--yellow);color:var(--navy);}
+.sticky-phone:hover{background:var(--yellow-bright);transform:translateY(-3px);box-shadow:0 12px 36px var(--sh-y);}
+.sticky-mail{background:var(--navy);color:var(--white);border:1px solid rgba(255,255,255,0.15);}
+.sticky-mail:hover{background:var(--navy-light);transform:translateY(-3px);}
+@media(max-width:600px){
+.sticky-cta{bottom:1rem;right:1rem;flex-direction:row;}
+.sticky-btn .btn-text{display:none;}
+.sticky-btn{padding:0.85rem;border-radius:50%;}
+.sticky-btn svg{width:20px;height:20px;}
+}
+
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--yellow);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-size:0.84rem;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:var(--radius);box-shadow:0 8px 28px var(--sh-y);transition:all var(--tr);position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--yellow-bright);transform:translateX(-101%);transition:transform var(--tr);}
+.btn-primary span,.btn-primary svg{position:relative;z-index:1;}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px var(--sh-y);}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:0.84rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:var(--radius);border:2px solid rgba(255,255,255,0.3);transition:all var(--tr);}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.7rem;}
+.section-label::before{content:'';display:block;width:1.8rem;height:3px;background:var(--yellow);border-radius:2px;}
+.section-title{font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:var(--navy);line-height:0.95;}
+.section-title em{font-style:normal;color:var(--yellow);}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.reveal.active{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.reveal-left.active{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity 0.85s cubic-bezier(0.16,1,0.3,1),transform 0.85s cubic-bezier(0.16,1,0.3,1);}
+.reveal-right.active{opacity:1;transform:translateX(0);}
+
+.hero{position:relative;min-height:100svh;width:100%;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background-image:url('tlo.jpg');background-size:cover;background-position:center 50%;animation:heroZoom 14s ease-out forwards;}
+@keyframes heroZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(10,22,40,0.95) 0%,rgba(10,22,40,0.82) 55%,rgba(10,22,40,0.45) 100%);}
+.hero-stripe{position:absolute;bottom:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--yellow),var(--yellow-bright));}
+.hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.hero-particles span{position:absolute;width:2px;border-radius:2px;background:rgba(246,226,7,0.15);animation:dropFall linear infinite;}
+@keyframes dropFall{0%{top:-5%;opacity:0;}10%{opacity:1;}90%{opacity:0.6;}100%{top:110%;opacity:0;}}
+.hero-inner{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:9rem 2rem 6rem;width:100%;}
+.hero-tag{display:inline-flex;align-items:center;gap:0.7rem;background:rgba(246,226,7,0.1);border:1px solid rgba(246,226,7,0.2);color:var(--yellow);font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.45rem 1.1rem;border-radius:2px;margin-bottom:1.5rem;animation:fadeUp 1s 0.2s both;}
+.hero-breadcrumb{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1rem;animation:fadeUp 1s 0.1s both;}
+.hero-breadcrumb a{color:rgba(255,255,255,0.35);transition:color var(--tr);}
+.hero-breadcrumb a:hover{color:var(--yellow);}
+.hero-breadcrumb span{color:var(--yellow);}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);}}
+.hero-headline{font-size:clamp(2.8rem,7vw,6.5rem);font-weight:900;line-height:0.95;color:var(--white);margin-bottom:1.2rem;animation:fadeUp 1s 0.4s both;}
+.hero-subheadline{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;color:var(--yellow);margin-bottom:1.2rem;animation:fadeUp 1s 0.45s both;}
+.hero-tagline{font-size:clamp(0.95rem,2vw,1.1rem);font-weight:300;line-height:1.7;color:rgba(255,255,255,0.85);max-width:700px;margin-bottom:2.4rem;animation:fadeUp 1s 0.55s both;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 1s 0.7s both;}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1.2s 1.2s both;}
+.hero-scroll span{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(246,226,7,0.6),transparent);animation:scrollDrop 2.2s ease-in-out infinite;}
+@keyframes scrollDrop{0%,100%{transform:scaleY(1);opacity:0.5;}50%{transform:scaleY(1.35);opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+
+.landings{padding:6rem 2rem;background:var(--white);}
+.landings-inner{max-width:1300px;margin:0 auto;}
+.landings-intro{text-align:center;margin-bottom:5rem;}
+.landing-block{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:8rem;}
+.landing-block:nth-child(even) .lb-visual{order:2;}
+.landing-block:nth-child(even) .lb-content{order:1;}
+.lb-visual{position:relative;border-radius:8px;overflow:hidden;box-shadow:0 30px 60px rgba(10,22,40,0.15);}
+.lb-visual::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,0.2);pointer-events:none;}
+.lb-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform 0.8s ease;}
+.landing-block:hover .lb-img{transform:scale(1.05);}
+.lb-content{display:flex;flex-direction:column;gap:1.5rem;}
+.lb-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:var(--navy);line-height:1;margin-bottom:0.5rem;}
+.lb-desc{font-size:1rem;color:var(--gray-text);line-height:1.75;}
+.lb-bullets{display:flex;flex-direction:column;gap:1rem;margin:1rem 0;}
+.lb-bullet{display:flex;align-items:flex-start;gap:1rem;}
+.lb-bullet-icon{width:24px;height:24px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0.15rem;box-shadow:0 4px 10px rgba(246,226,7,0.4);}
+.lb-bullet-icon svg{width:14px;height:14px;stroke:var(--navy);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.lb-bullet-text{font-size:0.95rem;font-weight:600;color:var(--navy);line-height:1.4;}
+
+.how{padding:7rem 2rem;background:var(--navy);position:relative;overflow:hidden;}
+.how::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.how-inner{max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+.how-head{text-align:center;margin-bottom:5rem;}
+.how-head .section-title{color:var(--white);}
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.how-steps{display:flex;flex-direction:column;gap:0;}
+.how-step{display:flex;gap:1.5rem;padding:1.8rem 0;border-bottom:1px solid rgba(255,255,255,0.06);position:relative;transition:all var(--tr);}
+.how-step:hover{background:rgba(255,255,255,0.02);padding-left:1rem;}
+.how-step:last-child{border-bottom:none;}
+.step-num{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;color:rgba(246,226,7,0.15);line-height:1;flex-shrink:0;width:4rem;text-align:right;transition:color var(--tr);}
+.how-step:hover .step-num{color:rgba(246,226,7,0.5);}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:var(--white);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.5rem;}
+.step-desc{font-size:0.9rem;color:rgba(255,255,255,0.45);line-height:1.7;}
+
+.before-after{padding:7rem 2rem;background:var(--off-white);overflow:hidden;}
+.ba-inner{max-width:1300px;margin:0 auto;}
+.ba-header{text-align:center;margin-bottom:3.5rem;}
+.ba-header .section-label{justify-content:center;}
+.ba-slider-wrap{position:relative;max-width:900px;margin:0 auto;}
+.ba-slide{display:none;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(10,22,40,0.12);}
+.ba-slide.active{display:block;}
+.ba-compare{position:relative;width:100%;user-select:none;-webkit-user-select:none;border-radius:10px;overflow:hidden;}
+.ba-img-wrap{position:relative;width:100%;aspect-ratio:16/10;}
+.ba-img-after{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.ba-img-before-wrap{position:absolute;inset:0;overflow:hidden;}
+.ba-img-before{width:100%;height:100%;object-fit:cover;object-position:center;display:block;position:absolute;inset:0;}
+.ba-handle{position:absolute;top:0;bottom:0;width:4px;background:var(--yellow);cursor:ew-resize;transform:translateX(-50%);z-index:10;left:50%;}
+.ba-handle-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.ba-handle-circle svg{width:20px;height:20px;fill:var(--navy);}
+.ba-label{position:absolute;top:1rem;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:2px;}
+.ba-label-before{left:1rem;background:rgba(10,22,40,0.85);color:var(--white);}
+.ba-label-after{right:1rem;background:var(--yellow);color:var(--navy);}
+.ba-dots{display:flex;gap:0.6rem;justify-content:center;margin-top:1.5rem;}
+.ba-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-light);transition:background var(--tr),transform var(--tr);cursor:pointer;}
+.ba-dot.active{background:var(--yellow);transform:scale(1.3);}
+.ba-nav{display:flex;gap:0.8rem;justify-content:center;margin-top:1rem;}
+.ba-nav-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--gray-light);background:none;color:var(--navy);display:flex;align-items:center;justify-content:center;transition:all var(--tr);}
+.ba-nav-btn:hover{border-color:var(--yellow);background:rgba(246,226,7,0.07);}
+.ba-nav-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;}
+
+.why{padding:7rem 2rem;background:var(--white);}
+.why-inner{max-width:1300px;margin:0 auto;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.why-visual{position:relative;}
+.why-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;box-shadow:0 30px 70px rgba(10,22,40,0.15);display:block;}
+.why-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--yellow);border-radius:6px;padding:1.4rem 1.8rem;text-align:center;box-shadow:0 12px 36px var(--sh-y);}
+.why-badge-num{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;color:var(--navy);line-height:1;display:block;}
+.why-badge-txt{font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(10,22,40,0.75);margin-top:0.3rem;display:block;}
+.why-content{display:flex;flex-direction:column;gap:1.8rem;}
+.usp-list{display:flex;flex-direction:column;gap:1.2rem;}
+.usp-item{display:flex;align-items:center;gap:1.2rem;padding:1.2rem;background:var(--off-white);border:1px solid var(--gray-light);border-radius:6px;transition:all var(--tr);}
+.usp-item:hover{border-color:rgba(246,226,7,0.4);background:var(--yellow-pale);transform:translateX(5px);}
+.usp-icon{width:30px;height:30px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 10px rgba(246,226,7,0.3);}
+.usp-icon svg{width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.usp-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.04em;}
+
+.cta-band{background:var(--navy);padding:8rem 2rem;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--yellow),var(--yellow-bright));}
+.cta-noise{position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.cta-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.cta-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(246,226,7,0.1);border:1px solid rgba(246,226,7,0.2);color:var(--yellow);font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:2px;margin-bottom:1.5rem;}
+.cta-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:var(--white);line-height:0.95;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:1.2rem;}
+.cta-title em{font-style:normal;color:var(--yellow);}
+.cta-sub{font-size:1.05rem;color:rgba(255,255,255,0.6);margin-bottom:2.5rem;line-height:1.7;}
+.cta-actions{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,0.06);padding:2rem;}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{height:30px;opacity:0.5;transition:opacity var(--tr);}
+.footer-logo:hover{opacity:1;}
+.footer-links{display:flex;gap:1.8rem;flex-wrap:wrap;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:color var(--tr);}
+.footer-links a:hover{color:var(--yellow);}
+.footer-socials{display:flex;gap:0.8rem;}
+.footer-socials a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:4px;overflow:hidden;background:var(--white);transition:transform var(--tr);}
+.footer-socials a:hover{transform:translateY(-3px);}
+.footer-socials img{width:100%;height:100%;object-fit:cover;}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.22);font-weight:300;width:100%;text-align:center;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.06);}
+.footer-copy a{color:var(--yellow);opacity:0.65;transition:opacity var(--tr);}
+.footer-copy a:hover{opacity:1;}
+
+@media(max-width:1100px){
+.landing-block{gap:2.5rem;}
+.how-grid{grid-template-columns:1fr;gap:3rem;}
+.how-text-block{max-width:700px;margin:0 auto;text-align:center;}
+}
+@media(max-width:900px){
+.landing-block{grid-template-columns:1fr;text-align:center;gap:2rem;}
+.landing-block:nth-child(even) .lb-visual{order:1;}
+.landing-block:nth-child(even) .lb-content{order:2;}
+.lb-bullets{align-items:center;text-align:left;}
+.lb-content .btn-primary{align-self:center;}
+.why-grid{grid-template-columns:1fr;gap:3rem;}
+.why-visual{max-width:480px;margin:0 auto;}
+}
+@media(max-width:768px){
+body, p, h1, h2, h3, h4, span, a, label, input, textarea, select, .section-label, .hero-tag, .hero-breadcrumb, .lb-desc, .how-text, .cta-sub{text-align:center !important;}
+.hero-tag, .section-label, .cta-tag{justify-content:center !important;}
+.hero-actions, .cta-actions{justify-content:center !important;}
+.nav-links, .nav-socials{display:none !important;}
+.hamburger{display:flex !important;}
+.nav{padding:0 1.5rem;}
+.hero-inner{padding:6rem 1.5rem 5rem;}
+.hero-headline em{-webkit-text-stroke:2px var(--yellow);}
+.lb-bullet{flex-direction:column;align-items:center;text-align:center;}
+.how-step{flex-direction:column;align-items:center;text-align:center;}
+.step-num{text-align:center;width:100%;}
+.usp-item{flex-direction:column;align-items:center;text-align:center;}
+.hero-scroll{display:none;}
+.footer-inner{flex-direction:column;align-items:center;text-align:center;}
+.footer-links{justify-content:center;}
+.section-label::before{display:none;}
+}
+@media(max-width:540px){
+.hero-actions{flex-direction:column;}
+.btn-primary,.btn-ghost{justify-content:center;}
+.cta-actions{flex-direction:column;}
+.landings{padding:4rem 1.5rem;}
+.before-after{padding:4rem 1.5rem;}
+.why{padding:4rem 1.5rem;}
+.how{padding:4rem 1.5rem;}
+.cta-band{padding:4rem 1.5rem;}
+.landing-block{margin-bottom:5rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-cta" id="stickyCta">
+  <a href="tel:+48577299970" class="sticky-btn sticky-phone">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    <span class="btn-text">Zadzwoń</span>
+  </a>
+  <a href="index.html#kontakt" class="sticky-btn sticky-mail">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    <span class="btn-text">Wycena</span>
+  </a>
+</div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" aria-label="BusBros - strona główna">
+      <img src="logo.png" alt="BusBros" class="nav-logo" onerror="this.style.display='none'">
+    </a>
+    <div class="nav-controls">
+      <div class="nav-socials">
+        <a href="https://share.google/nujMLE3W3aIep8pYt" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Google"><img src="goo.png" alt="Google"></a>
+        <a href="https://www.facebook.com/BusBrosBK" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Facebook"><img src="fac.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/busbros_transport_czyszczenie" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Instagram"><img src="ins.jpg" alt="Instagram"></a>
+        <a href="https://www.tiktok.com/@busbros_transport_mycie" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="TikTok"><img src="tik.jpg" alt="TikTok"></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#uslugi">Usługi</a>
+        <a href="mycie.html" class="nav-active">Mycie Ciśnieniowe</a>
+        <a href="bus.html">Usługi Busowe</a>
+        <a href="index.html#opinie">Opinie</a>
+        <a href="index.html#kontakt" class="nav-cta">Bezpłatna wycena</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobilne">
+  <a href="index.html#uslugi" class="mobile-link">Usługi</a>
+  <a href="mycie.html" class="mobile-link">Mycie Ciśnieniowe</a>
+  <a href="bus.html" class="mobile-link">Usługi Busowe</a>
+  <a href="index.html#opinie" class="mobile-link">Opinie</a>
+  <a href="index.html#kontakt" class="nav-cta mobile-link">Bezpłatna wycena</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-particles" id="heroParticles"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><div class="hero-dot"></div>Dział 01 — Kompleksowe Czyszczenie</div>
+    <h1 class="hero-headline">Mycie<br>Ciśnieniowe</h1>
+    <h2 class="hero-subheadline">Przywracamy czystość, której nie da się osiągnąć zwykłym myciem</h2>
+    <p class="hero-tagline">Jesteśmy specjalistami od profesjonalnego mycia powierzchni zewnętrznych. Usuwamy brud, glony, mech, oleje i wieloletnie zabrudzenia z kostki brukowej, dachów, elewacji, tarasów i podjazdów. Działamy sprzętem wysokociśnieniowym klasy profesjonalnej, dzięki czemu efekt „przed i po” jest natychmiastowy i spektakularny.</p>
+    <div class="hero-actions">
+      <a href="tel:+48577299970" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>Zadzwoń teraz</span>
+      </a>
+      <a href="index.html#kontakt" class="btn-ghost">
+        <span>Darmowa wycena</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section class="landings" id="uslugi">
+  <div class="landings-inner">
+    <div class="landings-intro reveal">
+      <div class="section-label" style="justify-content:center;">Zakres Usług</div>
+      <h2 class="section-title" style="text-align:center;">Co możemy <em>wyczyścić?</em></h2>
+    </div>
+
+    <div class="landing-block reveal">
+      <div class="lb-visual">
+        <img class="lb-img" src="kostka.jpg" alt="Mycie kostki brukowej i podjazdów" onerror="this.style.background='var(--navy-light)'">
+      </div>
+      <div class="lb-content">
+        <h3 class="lb-title">Kostka Brukowa i Podjazdy</h3>
+        <p class="lb-desc">Kostka brukowa i podjazdy garażowe to wizytówka każdego domu i firmy. Z biegiem czasu nawierzchnia traci swój pierwotny urok, pokrywając się warstwą mchu, wykwitami wapiennymi oraz głębokimi zabrudzeniami drogowymi, takimi jak ślady po rozgrzanych oponach. Plamy z oleju silnikowego czy rdzy potrafią skutecznie zeszpecić nawet najdroższą kostkę. Nie musisz wymieniać jej na nową. Nasze specjalistyczne mycie ciśnieniowe wypłukuje zanieczyszczenia z samych porów betonu, rozbijając smary i zanieczyszczenia chemiczne na poziomie cząsteczkowym. Zabieg warto wykonać po zimie, by usunąć osady z soli, lub przed sprzedażą nieruchomości. Dla właścicieli domów, firm i zarządców osiedli – gwarantujemy efekt wywołujący uśmiech, z nawierzchnią wyglądającą jak w dniu ułożenia.</p>
+        <div class="lb-bullets">
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Usuwanie mchu, brudu, plam z oleju i śladów opon</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Przywracanie oryginalnego koloru kostki i podjazdów</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Efekt „nowej nawierzchni”</div>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn-primary" style="align-self:flex-start;">Zamów czyszczenie <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="landing-block reveal">
+      <div class="lb-visual">
+        <img class="lb-img" src="dach.jpg" alt="Mycie dachów" onerror="this.style.background='var(--navy-light)'">
+      </div>
+      <div class="lb-content">
+        <h3 class="lb-title">Dachy</h3>
+        <p class="lb-desc">Dach jest stale narażony na ekstremalne działanie warunków atmosferycznych. Z biegiem lat na dachówkach osadza się sadza, kurz, a także wyrastają niszczycielskie mchy i porosty. Te biologiczne zanieczyszczenia zatrzymują wilgoć, co w dłuższej perspektywie prowadzi do pękania pokrycia podczas przymrozków. Nasza metoda mycia ciśnieniowego jest w 100% bezpieczna dla struktury dachu – pracujemy na optymalnych parametrach. Odpowiednio dobrane ciśnienie zmywa wieloletni osad, nie uszkadzając powłok ochronnych. Zamiast planować kosztowny remont, pozwól nam przywrócić dachowi jego fabryczny wygląd i zachować właściwości ochronne domu na długie lata.</p>
+        <div class="lb-bullets">
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Usuwanie mchu, sadzy, zabrudzeń atmosferycznych</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Bezpieczne mycie dachówki, blachy, papy</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Przedłużenie żywotności dachu</div>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn-primary" style="align-self:flex-start;">Zamów czyszczenie <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="landing-block reveal">
+      <div class="lb-visual">
+        <img class="lb-img" src="elewacja.jpg" alt="Mycie elewacji" onerror="this.style.background='var(--navy-light)'">
+      </div>
+      <div class="lb-content">
+        <h3 class="lb-title">Elewacje</h3>
+        <p class="lb-desc">Czysta elewacja to podstawa estetycznego budynku, ale zanieczyszczenia powietrza szybko odbierają jej pierwotny urok. Szczególnie na północnych, zacienionych ścianach pojawia się uporczywy, zielony nalot z glonów, który z czasem może niszczyć tynk. Kurz, smog i zacieki po deszczach wnikają w pory elewacji, tworząc ciemne plamy. Profesjonalne mycie ciśnieniowe to bezpieczna rewolucja w odświeżaniu budynku. Dostosowujemy moc strumienia do rodzaju materiału, aby nie uszkodzić struktury ściany. Elimnujemy zarodniki pleśni, poprawiając wygląd i mikroklimat wokół domu, oszczędzając Ci tysiące złotych na niepotrzebnym, nowym malowaniu.</p>
+        <div class="lb-bullets">
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Czyszczenie tynków, cegły, powierzchni elewacyjnych</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Usuwanie zacieków, zielonego nalotu</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Efekt „odnowionego budynku bez remontu”</div>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn-primary" style="align-self:flex-start;">Zamów czyszczenie <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="landing-block reveal">
+      <div class="lb-visual">
+        <img class="lb-img" src="tarasy.jpg" alt="Mycie tarasów" onerror="this.style.background='var(--navy-light)'">
+      </div>
+      <div class="lb-content">
+        <h3 class="lb-title">Tarasy</h3>
+        <p class="lb-desc">Taras to Twoja przydomowa strefa relaksu, która po okresie jesienno-zimowym rzadko zachęca do wypoczynku. Naturalne drewno szarzeje, deski kompozytowe tracą swój pierwotny wygląd, a beton pokrywa się śliskim i niebezpiecznym osadem biologicznym. Zalegający brud, plamy po letnim grillowaniu czy zbutwiałe liście skutecznie odbierają urok temu miejscu. Używamy precyzyjnego sprzętu, który czyści wgłębienia i ryflowania desek, nie uszkadzając ich włókien. Wyciągamy na zewnątrz osady, przygotowując powierzchnię pod idealną impregnację. Odzyskaj piękną i bezpieczną przestrzeń, która znów stanie się ulubionym miejscem domowników.</p>
+        <div class="lb-bullets">
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Drewno, kompozyt, beton</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Usuwanie zabrudzeń sezonowych i biologicznych</div>
+          </div>
+          <div class="lb-bullet">
+            <div class="lb-bullet-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="lb-bullet-text">Przywracanie estetyki strefy relaksu</div>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn-primary" style="align-self:flex-start;">Zamów czyszczenie <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="how" id="jak-dzialamy">
+  <div class="how-inner">
+    <div class="how-head reveal">
+      <div class="section-label" style="justify-content:center;color:rgba(246,226,7,0.9);">Proces</div>
+      <h2 class="section-title" style="color:var(--white);">Jak <em>działamy</em></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-text-block reveal-left">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--white);text-transform:uppercase;line-height:1.1;margin-bottom:1rem;">Precyzja od<br>początku do końca</h3>
+        <p class="how-text" style="color:rgba(255,255,255,0.6);font-size:1.05rem;line-height:1.7;">Nie przyjeżdżamy, by „tylko spłukać” powierzchnię. Skupiamy się na technologii i właściwym doborze parametrów, aby osiągnąć perfekcyjny rezultat. Profesjonalizm w myciu to przewidywalność na każdym etapie – poznaj nasz czteroetapowy system przywracania czystości.</p>
+        <img src="logo.jpg" alt="BusBros ekipa przy pracy" style="width:100%;max-width:320px;border-radius:6px;margin-top:2rem;box-shadow:0 20px 40px rgba(0,0,0,0.4);" onerror="this.style.background='#1d3461'">
+      </div>
+      <div class="how-steps reveal-right">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-title">Dojazd i ocena powierzchni</div>
+            <div class="step-desc">Przyjeżdżamy na miejsce i dokładnie analizujemy rodzaj materiału oraz typ osadzonego brudu. Ocena gwarantuje bezproblemową realizację.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-title">Dobór ciśnienia i metody</div>
+            <div class="step-desc">Ustawiamy moc sprzętu. Cienka powłoka tynku wymaga innej siły niż stara, betonowa kostka. Kalibrujemy parametry w 100% bezpiecznie.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-title">Mycie i usuwanie zabrudzeń</div>
+            <div class="step-desc">Przeprowadzamy dogłębne czyszczenie z wykorzystaniem profesjonalnych urządzeń, likwidując wykwity, mchy, porosty i najtrudniejsze osady.</div>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-title">Efekt końcowy + kontrola jakości</div>
+            <div class="step-desc">Spłukujemy resztki i wspólnie z Tobą dokonujemy odbioru prac. Nie odjeżdżamy, dopóki powierzchnia nie spełnia naszych surowych norm wizualnych.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="before-after" id="realizacje">
+  <div class="ba-inner">
+    <div class="ba-header reveal">
+      <div class="section-label" style="justify-content:center;">Nasze realizacje</div>
+      <h2 class="section-title">Przed <em>i po.</em></h2>
+      <p style="color:var(--gray-mid);font-size:0.95rem;margin-top:0.8rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;">Zabrudzenia potrafią skutecznie zakamuflować faktyczny wygląd materiału. Przeciągnij suwak i przekonaj się, jaką różnicę robimy na co dzień.</p>
+    </div>
+    <div class="ba-slider-wrap reveal">
+      <div id="baSlides"></div>
+      <div class="ba-dots" id="baDots"></div>
+      <div class="ba-nav">
+        <button class="ba-nav-btn" id="baPrev" aria-label="Poprzedni"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="ba-nav-btn" id="baNext" aria-label="Następny"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="dlaczego-my">
+  <div class="why-inner">
+    <div class="why-grid">
+      <div class="why-visual reveal-left">
+        <img src="logo.jpg" alt="BusBros profesjonalny sprzęt" class="why-img" onerror="this.style.background='var(--navy-mid)'">
+        <div class="why-badge"><span class="why-badge-num">100%</span><span class="why-badge-txt">Gwarancja Satysfakcji</span></div>
+      </div>
+      <div class="why-content reveal-right">
+        <div>
+          <div class="section-label">Efekty / Dlaczego My</div>
+          <h2 class="section-title">Technologia <em>sukcesu.</em></h2>
+          <p style="color:var(--gray-mid);font-size:1rem;line-height:1.75;margin-top:1rem;">Osiągnięcie idealnej czystości to wypadkowa potężnego sprzętu, ogromnego doświadczenia i szacunku do materiału, na którym pracujemy.</p>
+        </div>
+        <div class="usp-list">
+          <div class="usp-item">
+            <div class="usp-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="usp-title">Profesjonalne urządzenia wysokociśnieniowe</div>
+          </div>
+          <div class="usp-item">
+            <div class="usp-icon"><svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C7 12 3 8.418 3 4"/><path d="M12 12c5 0 9-3.582 9-8"/><circle cx="12" cy="4" r="2"/></svg></div>
+            <div class="usp-title">Brak uszkodzeń powierzchni</div>
+          </div>
+          <div class="usp-item">
+            <div class="usp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="usp-title">Szybka realizacja</div>
+          </div>
+          <div class="usp-item">
+            <div class="usp-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+            <div class="usp-title">Doświadczenie w trudnych zabrudzeniach</div>
+          </div>
+          <div class="usp-item">
+            <div class="usp-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="usp-title">Działamy lokalnie i mobilnie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" id="kontakt">
+  <div class="cta-noise"></div>
+  <div class="cta-inner reveal">
+    <div class="cta-tag">
+      <div class="hero-dot"></div>
+      Sprawdź sam
+    </div>
+    <h2 class="cta-title">Twoja powierzchnia potrzebuje<br><em>odświeżenia?</em></h2>
+    <p class="cta-sub">Skontaktuj się z nami. Zyskaj gwarancję efektu "wow", zaoszczędź czas i przywróć swojej posesji wartość i utracony blask.</p>
+    <div class="cta-actions">
+      <a href="tel:+48577299970" class="btn-primary" style="font-size:1.1rem;padding:1.2rem 2.8rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>Zadzwoń teraz</span>
+      </a>
+      <a href="index.html#kontakt" class="btn-ghost" style="font-size:1.1rem;padding:1.2rem 2.8rem;">
+        <span>Zamów darmową wycenę</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" aria-label="BusBros"><img src="logo.png" alt="BusBros" class="footer-logo" onerror="this.style.display='none'"></a>
+    <div class="footer-links">
+      <a href="index.html">Strona główna</a>
+      <a href="mycie.html">Mycie Ciśnieniowe</a>
+      <a href="bus.html">Usługi Busowe</a>
+      <a href="index.html#opinie">Opinie</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a href="pp.html">Polityka prywatności</a>
+      <a href="df.html">Dane firmy</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://share.google/nujMLE3W3aIep8pYt" target="_blank" rel="noopener" aria-label="Google"><img src="goo.png" alt="Google"></a>
+      <a href="https://www.facebook.com/BusBrosBK" target="_blank" rel="noopener" aria-label="Facebook"><img src="fac.png" alt="Facebook"></a>
+      <a href="https://www.instagram.com/busbros_transport_czyszczenie" target="_blank" rel="noopener" aria-label="Instagram"><img src="ins.jpg" alt="Instagram"></a>
+      <a href="https://www.tiktok.com/@busbros_transport_mycie" target="_blank" rel="noopener" aria-label="TikTok"><img src="tik.jpg" alt="TikTok"></a>
+    </div>
+    <p class="footer-copy">&copy; 2026 BusBros. Strona stworzona przez <a href="https://str0nix.pl" target="_blank" rel="noopener">Str0nix.pl</a></p>
+  </div>
+</footer>
+
+<script>
+const BA_PAIRS=[
+  {before:'before.jpg',after:'after.jpg',label:'Kostka brukowa — realizacja 1'},
+  {before:'bf1.jpg',after:'af1.jpg',label:'Kostka brukowa — realizacja 2'},
+  {before:'bf2.jpg',after:'af2.jpg',label:'Elewacja — realizacja 3'}
+];
+
+const nav=document.getElementById('mainNav');
+const stickyCta=document.getElementById('stickyCta');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>50);
+  stickyCta.classList.toggle('visible',window.scrollY>400);
+},{passive:true});
+
+const hamburger=document.getElementById('hamburger');
+const mobileMenu=document.getElementById('mobileMenu');
+function openMenu(){mobileMenu.classList.add('open');hamburger.classList.add('open');hamburger.setAttribute('aria-expanded',true);document.body.style.overflow='hidden';}
+function closeMenu(){mobileMenu.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded',false);document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>mobileMenu.classList.contains('open')?closeMenu():openMenu());
+mobileMenu.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',closeMenu));
+
+(function(){
+  const container=document.getElementById('heroParticles');
+  for(let i=0;i<18;i++){
+    const s=document.createElement('span');
+    const left=Math.random()*100;
+    const dur=4+Math.random()*6;
+    const delay=Math.random()*8;
+    const h=20+Math.random()*60;
+    s.style.cssText=`left:${left}%;height:${h}px;animation-duration:${dur}s;animation-delay:${delay}s;`;
+    container.appendChild(s);
+  }
+})();
+
+let baCurrent=0;
+function buildBA(){
+  const slides=document.getElementById('baSlides');
+  const dots=document.getElementById('baDots');
+  BA_PAIRS.forEach((pair,i)=>{
+    const slide=document.createElement('div');
+    slide.className='ba-slide'+(i===0?' active':'');
+    slide.innerHTML=`<div class="ba-compare" data-idx="${i}"><div class="ba-img-wrap"><img src="${pair.after}" alt="Po" class="ba-img-after" onerror="this.style.background='#1d3461'"><div class="ba-img-before-wrap" style="clip-path:inset(0 50% 0 0)"><img src="${pair.before}" alt="Przed" class="ba-img-before" onerror="this.style.background='#2a3f6b'"></div><div class="ba-handle" style="left:50%"><div class="ba-handle-circle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div></div><span class="ba-label ba-label-before">PRZED</span><span class="ba-label ba-label-after">PO</span></div></div>`;
+    slides.appendChild(slide);
+    const dot=document.createElement('div');
+    dot.className='ba-dot'+(i===0?' active':'');
+    dot.addEventListener('click',()=>goBA(i));
+    dots.appendChild(dot);
+    initBA(slide.querySelector('.ba-compare'));
+  });
+  document.getElementById('baPrev').addEventListener('click',()=>goBA((baCurrent-1+BA_PAIRS.length)%BA_PAIRS.length));
+  document.getElementById('baNext').addEventListener('click',()=>goBA((baCurrent+1)%BA_PAIRS.length));
+}
+function goBA(idx){
+  document.querySelectorAll('.ba-slide').forEach((s,i)=>{s.classList.toggle('active',i===idx);});
+  document.querySelectorAll('.ba-dot').forEach((d,i)=>{d.classList.toggle('active',i===idx);});
+  baCurrent=idx;
+}
+function initBA(el){
+  const beforeWrap=el.querySelector('.ba-img-before-wrap');
+  const handle=el.querySelector('.ba-handle');
+  let dragging=false;
+  function setPos(x){
+    const rect=el.getBoundingClientRect();
+    let pct=Math.max(0,Math.min(1,(x-rect.left)/rect.width));
+    const pctPc=(pct*100).toFixed(2)+'%';
+    handle.style.left=pctPc;
+    beforeWrap.style.clipPath=`inset(0 ${(100-pct*100).toFixed(2)}% 0 0)`;
+  }
+  handle.addEventListener('mousedown',e=>{dragging=true;e.preventDefault();});
+  window.addEventListener('mousemove',e=>{if(dragging)setPos(e.clientX);});
+  window.addEventListener('mouseup',()=>{dragging=false;});
+  el.addEventListener('touchstart',e=>{dragging=true;e.preventDefault();},{passive:false});
+  window.addEventListener('touchmove',e=>{if(dragging)setPos(e.touches[0].clientX);},{passive:true});
+  window.addEventListener('touchend',()=>{dragging=false;});
+}
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('active');observer.unobserve(entry.target);}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach((el,i)=>{
+  el.style.transitionDelay=(Math.floor(i%5)*0.09)+'s';
+  observer.observe(el);
+});
+
+buildBA();
+</script>
+</body>
+</html>

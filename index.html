@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a1628">
+<meta name="description" content="BusBros to lokalna firma usługowa z Barlinka. Profesjonalne mycie ciśnieniowe, usługi transportowe, przeprowadzki i utylizacja. Barlinek, Gorzów, Stargard i okolice. Zadzwoń po darmową wycenę!">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://busbros.pl/">
+<title>BusBros – Przeprowadzki, Transport & Mycie Ciśnieniowe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--navy:#0a1628;
+--navy-mid:#112240;
+--navy-light:#1d3461;
+--yellow:#F6E207;
+--yellow-bright:#fff35c;
+--yellow-pale:#fffde0;
+--white:#ffffff;
+--off-white:#f7f8fa;
+--gray-light:#e8edf5;
+--gray-mid:#8a9ab5;
+--gray-text:#3d4f6b;
+--radius:4px;
+--tr:0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+--sh-y:rgba(246,226,7,0.25);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--gray-text);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.03em;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+button{cursor:pointer;border:none;background:none;font-family:inherit;}
+
+.nav{position:fixed;top:0;left:0;width:100%;z-index:900;padding:0 2rem;transition:background var(--tr),box-shadow var(--tr);}
+.nav.scrolled{background:rgba(10,22,40,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 4px 30px rgba(0,0,0,0.3);}
+.nav-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:72px;}
+.nav-logo{height:46px;width:auto;object-fit:contain;transition:transform var(--tr);}
+.nav-logo:hover{transform:scale(1.04);}
+.nav-controls{display:flex;align-items:center;gap:1.5rem;}
+.nav-socials{display:flex;align-items:center;gap:1rem;padding-right:1rem;border-right:1px solid rgba(255,255,255,0.15);}
+.nav-soc-btn{display:flex;align-items:center;justify-content:center;border-radius:4px;overflow:hidden;width:34px;height:34px;background:var(--white);}
+.nav-soc-btn img{width:100%;height:100%;object-fit:cover;transition:transform var(--tr);}
+.nav-soc-btn:hover img{transform:scale(1.15);}
+.nav-links{display:flex;gap:2rem;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);position:relative;padding-bottom:3px;transition:color var(--tr);}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--yellow);transition:width var(--tr);}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--yellow);color:var(--navy) !important;padding:0.55rem 1.4rem;border-radius:var(--radius);font-weight:800 !important;box-shadow:0 4px 16px var(--sh-y);transition:all var(--tr) !important;}
+.nav-cta::after{display:none !important;}
+.nav-cta:hover{background:var(--yellow-bright) !important;transform:translateY(-2px) !important;box-shadow:0 8px 24px var(--sh-y) !important;}
+
+.hamburger{display:none;flex-direction:column;gap:5px;padding:5px;background:transparent;border:none;}
+.hamburger span{display:block;width:26px;height:2px;background:var(--white);border-radius:2px;transition:all 0.35s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{position:fixed;inset:0;background:rgba(10,22,40,0.99);z-index:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform 0.55s cubic-bezier(0.16,1,0.3,1);}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;color:var(--white);transition:color var(--tr);}
+.mobile-menu a:hover{color:var(--yellow);}
+.mobile-menu .nav-cta{padding:0.85rem 2.5rem;font-size:1rem;border-radius:var(--radius);}
+
+.sticky-cta{position:fixed;bottom:1.4rem;right:1.4rem;z-index:850;display:flex;flex-direction:column;gap:0.6rem;opacity:0;transform:translateY(20px);transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none;}
+.sticky-cta.visible{opacity:1;transform:translateY(0);pointer-events:all;}
+.sticky-btn{display:flex;align-items:center;gap:0.55rem;padding:0.75rem 1.2rem;border-radius:50px;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;box-shadow:0 8px 28px rgba(0,0,0,0.3);transition:all var(--tr);white-space:nowrap;}
+.sticky-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.sticky-phone{background:var(--yellow);color:var(--navy);}
+.sticky-phone:hover{background:var(--yellow-bright);transform:translateY(-3px);box-shadow:0 12px 36px var(--sh-y);}
+.sticky-wa{background:#25D366;color:#ffffff;border:1px solid rgba(255,255,255,0.15);}
+.sticky-wa:hover{background:#20b858;transform:translateY(-3px);box-shadow:0 12px 36px rgba(37,211,102,0.3);}
+@media(max-width:600px){
+.sticky-cta{bottom:1.2rem;right:1.2rem;gap:0.8rem;}
+.sticky-btn .btn-text{display:none;}
+.sticky-btn{padding:0.85rem;border-radius:50%;}
+.sticky-btn svg{width:22px;height:22px;}
+}
+
+.hero{position:relative;min-height:100svh;width:100%;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background-image:url('tlo.jpg');background-size:cover;background-position:center 40%;animation:heroZoom 14s ease-out forwards;}
+@keyframes heroZoom{from{transform:scale(1.08);}to{transform:scale(1);}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(110deg,rgba(10,22,40,0.94) 0%,rgba(10,22,40,0.85) 50%,rgba(10,22,40,0.4) 100%);}
+.hero-stripe{position:absolute;bottom:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--yellow),var(--yellow-bright));}
+.hero-inner{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:9rem 2rem 6rem;width:100%;}
+.hero-headline{font-size:clamp(2rem, 5vw, 4.5rem);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:1.2rem;animation:fadeUp 1s 0.2s both;}
+.hero-headline em{font-style:normal;color:var(--yellow);}
+.hero-sub{display:inline-flex;align-items:center;gap:0.7rem;background:rgba(246,226,7,0.1);border:1px solid rgba(246,226,7,0.2);color:var(--yellow);font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:0.5rem 1.2rem;border-radius:2px;margin-bottom:1.5rem;animation:fadeUp 1s 0.3s both;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);}}
+.hero-tagline{font-size:clamp(0.95rem,2vw,1.1rem);font-weight:300;line-height:1.7;color:rgba(255,255,255,0.78);max-width:600px;margin-bottom:2.4rem;animation:fadeUp 1s 0.4s both;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 1s 0.5s both;}
+
+.btn-primary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--yellow);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-size:0.84rem;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:var(--radius);box-shadow:0 8px 28px var(--sh-y);transition:all var(--tr);position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:var(--yellow-bright);transform:translateX(-101%);transition:transform var(--tr);}
+.btn-primary span,.btn-primary svg{position:relative;z-index:1;}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px var(--sh-y);}
+
+.btn-secondary{display:inline-flex;align-items:center;gap:0.6rem;background:var(--navy);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:900;letter-spacing:0.14em;text-transform:uppercase;padding:0.7rem 1.4rem;border-radius:var(--radius);transition:all var(--tr);}
+.btn-secondary:hover{background:var(--navy-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,22,40,0.15);}
+
+.btn-ghost{display:inline-flex;align-items:center;gap:0.6rem;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:0.84rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:var(--radius);border:2px solid rgba(255,255,255,0.3);transition:all var(--tr);}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,0.08);transform:translateY(-2px);}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1.2s 1.2s both;}
+.hero-scroll span{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(255,255,255,0.35);}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,rgba(246,226,7,0.6),transparent);animation:scrollDrop 2.2s ease-in-out infinite;}
+@keyframes scrollDrop{0%,100%{transform:scaleY(1);opacity:0.5;}50%{transform:scaleY(1.35);opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+
+.stats-band{background:var(--navy);padding:4rem 2rem;position:relative;overflow:hidden;}
+.stats-band::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow),var(--yellow-bright));}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.stat-item{text-align:center;padding:1rem;border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.stat-item:last-child{border-right:none;}
+.stat-icon{width:46px;height:46px;stroke:var(--yellow);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--white);}
+
+.reviews-band{background:var(--white);padding:6rem 2rem;border-top:1px solid var(--gray-light);overflow-x:hidden;}
+.reviews-inner{max-width:1300px;margin:0 auto;text-align:center;}
+.reviews-head{margin-bottom:3.5rem;}
+.section-label{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.7rem;justify-content:center;}
+.section-label::before{content:'';display:block;width:1.8rem;height:3px;background:var(--yellow);border-radius:2px;}
+.section-title{font-size:clamp(2rem,5vw,3.8rem);font-weight:900;color:var(--navy);line-height:0.95;}
+.section-title em{font-style:normal;color:var(--yellow);}
+.elfsight-safe-wrapper{width:100%;max-width:100vw;overflow:hidden;}
+
+.divisions{padding:6rem 2rem;background:var(--off-white);}
+.divisions-inner{max-width:1300px;margin:0 auto;}
+.divisions-intro{text-align:center;margin-bottom:4rem;}
+.division-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.division-block{border-radius:8px;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+.division-header{padding:3rem 2.4rem 2rem;position:relative;z-index:1;}
+.division-block.wash .division-header{background:var(--navy);}
+.division-block.bus .division-header{background:var(--navy-mid);}
+.division-heading{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--white);line-height:1;margin-bottom:0.8rem;}
+.division-desc{font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.7;}
+.division-services{display:flex;flex-direction:column;gap:0;background:var(--white);}
+.division-service-item{display:flex;align-items:center;gap:1.2rem;padding:1rem 2.4rem;background:var(--white);border-top:1px solid var(--gray-light);transition:all var(--tr);}
+.division-service-item:hover{background:var(--yellow-pale);padding-left:3.2rem;}
+.division-service-item img{width:64px;height:50px;object-fit:cover;border-radius:4px;flex-shrink:0;background:var(--gray-light);}
+.div-svc-text{flex:1;}
+.div-svc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:0.04em;}
+.div-svc-arr{width:20px;height:2px;background:var(--yellow);position:relative;flex-shrink:0;transition:width var(--tr);}
+.div-svc-arr::after{content:'';position:absolute;right:0;top:-4px;width:8px;height:8px;border-right:2px solid var(--yellow);border-top:2px solid var(--yellow);transform:rotate(45deg);}
+.division-service-item:hover .div-svc-arr{width:35px;}
+.division-footer{padding:1.6rem 2.4rem;background:rgba(0,0,0,0.02);display:flex;align-items:center;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--gray-light);}
+
+.before-after{padding:6rem 2rem;background:var(--navy);overflow:hidden;}
+.ba-inner{max-width:1100px;margin:0 auto;}
+.ba-header{text-align:center;margin-bottom:2.5rem;}
+.ba-header .section-label{justify-content:center;}
+.ba-header .section-title{color:var(--white);}
+.ba-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:3rem;}
+.ba-tab{padding:0.8rem 2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border-radius:4px;transition:all var(--tr);}
+.ba-tab:hover{background:rgba(246,226,7,0.1);border-color:rgba(246,226,7,0.3);}
+.ba-tab.active{background:var(--yellow);color:var(--navy);border-color:var(--yellow);}
+
+.ba-slider-wrap{position:relative;margin:0 auto;}
+.ba-slide{display:none;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5);}
+.ba-slide.active{display:block;animation:fadeIn 0.5s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:scale(0.98);}to{opacity:1;transform:scale(1);}}
+.ba-compare{position:relative;width:100%;user-select:none;-webkit-user-select:none;border-radius:10px;overflow:hidden;background:var(--navy-mid);}
+.ba-img-wrap{position:relative;width:100%;aspect-ratio:16/10;}
+.ba-img-after{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.ba-img-before-wrap{position:absolute;inset:0;overflow:hidden;transition:none;}
+.ba-img-before{width:100%;height:100%;object-fit:cover;object-position:center;display:block;position:absolute;inset:0;}
+.ba-handle{position:absolute;top:0;bottom:0;width:4px;background:var(--yellow);cursor:ew-resize;transform:translateX(-50%);z-index:10;left:50%;}
+.ba-handle-circle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);}
+.ba-handle-circle svg{width:20px;height:20px;fill:var(--navy);}
+.ba-label{position:absolute;top:1rem;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:2px;z-index:5;}
+.ba-label-before{left:1rem;background:rgba(10,22,40,0.85);color:var(--white);}
+.ba-label-after{right:1rem;background:var(--yellow);color:var(--navy);}
+.ba-service-tag{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(10,22,40,0.85);color:var(--yellow);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1.2rem;border-radius:4px;z-index:5;}
+.ba-dots{display:flex;gap:0.6rem;justify-content:center;margin-top:1.5rem;}
+.ba-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background var(--tr),transform var(--tr);cursor:pointer;}
+.ba-dot.active{background:var(--yellow);transform:scale(1.3);}
+.ba-cta-wrap{text-align:center;margin-top:4rem;}
+
+.contact-section{background:var(--white);padding:6rem 2rem;position:relative;overflow:hidden;border-top:1px solid var(--gray-light);}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;}
+.contact-left{display:flex;flex-direction:column;gap:2rem;}
+.contact-items{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;align-items:center;gap:1.2rem;padding:1.1rem 1.3rem;background:var(--off-white);border:1px solid var(--gray-light);border-radius:4px;transition:all var(--tr);}
+.contact-item:hover{background:var(--yellow-pale);border-color:rgba(246,226,7,0.4);transform:translateX(4px);}
+.contact-icon{width:42px;height:42px;border-radius:50%;background:rgba(246,226,7,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.contact-icon svg{fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;width:20px;height:20px;}
+.contact-label{font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);display:block;margin-bottom:0.1rem;}
+.contact-value{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);letter-spacing:0.02em;}
+
+.social-links{display:flex;gap:1rem;margin-top:1rem;}
+.social-btn{display:flex;align-items:center;justify-content:center;border-radius:8px;overflow:hidden;transition:all var(--tr);position:relative;width:55px;height:55px;background:var(--white);border:1px solid var(--gray-light);}
+.social-btn img{width:100%;height:100%;object-fit:cover;transition:transform var(--tr);}
+.social-btn:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(10,22,40,0.15);}
+.social-btn:hover img{transform:scale(1.1);}
+
+.contact-form{background:var(--navy);border-radius:8px;padding:3rem;box-shadow:0 30px 60px rgba(0,0,0,0.15);}
+.form-title{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--white);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:1.6rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.form-group{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.2rem;}
+.form-label{font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.form-input,.form-textarea,.form-select{width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);font-family:'Barlow',sans-serif;font-size:0.9rem;color:var(--white);transition:all var(--tr);appearance:none;-webkit-appearance:none;outline:none;}
+.form-select option{background:var(--navy);color:var(--white);}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,0.3);}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--yellow);background:rgba(255,255,255,0.1);}
+.form-textarea{resize:vertical;min-height:120px;}
+
+.file-hidden{opacity:0;position:absolute;width:0.1px;height:0.1px;z-index:-1;}
+.file-custom-btn{display:inline-flex;align-items:center;justify-content:center;gap:0.6rem;width:100%;padding:0.9rem 1rem;background:rgba(255,255,255,0.05);border:1px dashed rgba(255,255,255,0.3);border-radius:var(--radius);color:var(--white);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all var(--tr);}
+.file-custom-btn:hover{background:rgba(246,226,7,0.1);border-color:var(--yellow);color:var(--yellow);}
+.file-custom-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.file-chosen-text{font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.4rem;text-align:center;}
+
+.form-submit{width:100%;padding:1.2rem;background:var(--yellow);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:900;letter-spacing:0.15em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all var(--tr);margin-top:0.5rem;}
+.form-submit:hover{background:var(--yellow-bright);transform:translateY(-2px);box-shadow:0 10px 30px var(--sh-y);}
+
+footer{background:var(--navy-mid);padding:3rem 2rem 2rem;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;}
+.footer-logo{height:36px;opacity:0.8;transition:opacity var(--tr);}
+.footer-logo:hover{opacity:1;}
+.footer-links{display:flex;gap:1.8rem;flex-wrap:wrap;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);transition:color var(--tr);}
+.footer-links a:hover{color:var(--yellow);}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;width:100%;text-align:center;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-copy a{color:var(--yellow);opacity:0.8;transition:opacity var(--tr);}
+.footer-copy a:hover{opacity:1;}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+@media(max-width:1024px){
+.contact-inner{grid-template-columns:1fr;}
+.contact-form{padding:2.5rem;}
+}
+
+@media(max-width:768px){
+body, p, h1, h2, h3, h4, span, label, .section-label, .hero-sub { text-align: center !important; }
+.hero-sub, .section-label, .contact-item { justify-content: center !important; }
+.contact-item { flex-direction: column !important; align-items: center !important; }
+.contact-icon { margin: 0 0 0.5rem 0 !important; }
+.social-links, .hero-actions { justify-content: center !important; }
+.nav-inner { flex-direction: row !important; justify-content: space-between !important; }
+.nav-logo { margin: 0 !important; }
+.nav-links, .nav-socials{display:none !important;}
+.hamburger{display:flex !important;}
+.nav{padding:0 1.5rem;}
+.hero-inner{padding:6rem 1.5rem 5rem;}
+.stats-inner{grid-template-columns:repeat(2,1fr);}
+.stat-item:nth-child(2){border-right:none;}
+.division-wrap, .form-row {grid-template-columns:1fr;}
+.contact-form{padding:1.8rem 1.2rem;}
+.hero-scroll{display:none;}
+.footer-inner{flex-direction:column;align-items:center;text-align:center;}
+.footer-links{justify-content:center;}
+.ba-tabs{flex-direction:column;gap:0.5rem;}
+}
+@media(max-width:480px){
+.stats-inner{grid-template-columns:1fr;}
+.stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);padding:2rem 1rem;}
+.stat-item:last-child{border-bottom:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="sticky-cta" id="stickyCta">
+<a href="tel:+48577299970" class="sticky-btn sticky-phone" aria-label="Zadzwoń">
+<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+<span class="btn-text">Zadzwoń</span>
+</a>
+<a href="https://wa.me/48577299970" target="_blank" rel="noopener" class="sticky-btn sticky-wa" aria-label="Napisz na WhatsApp">
+<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+<span class="btn-text">WhatsApp</span>
+</a>
+</div>
+
+<nav class="nav" id="mainNav">
+<div class="nav-inner">
+<a href="#hero" aria-label="BusBros - strona główna">
+<img src="logo.png" alt="BusBros" class="nav-logo" onerror="this.style.display='none'">
+</a>
+<div class="nav-controls">
+<div class="nav-socials">
+<a href="https://share.google/nujMLE3W3aIep8pYt" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Google"><img src="goo.png" alt="Google"></a>
+<a href="https://www.facebook.com/BusBrosBK" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Facebook"><img src="fac.png" alt="Facebook"></a>
+<a href="https://www.instagram.com/busbros_transport_czyszczenie" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="Instagram"><img src="ins.jpg" alt="Instagram"></a>
+<a href="https://www.tiktok.com/@busbros_transport_mycie" target="_blank" rel="noopener" class="nav-soc-btn" aria-label="TikTok"><img src="tik.jpg" alt="TikTok"></a>
+</div>
+<div class="nav-links">
+<a href="mycie.html">Mycie</a>
+<a href="bus.html">Transport</a>
+<a href="#realizacje">Realizacje</a>
+<a href="#opinie">Opinie</a>
+<a href="#kontakt" class="nav-cta">Bezpłatna wycena</a>
+</div>
+<button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
+</nav>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobilne">
+<a href="mycie.html" class="mobile-link">Mycie</a>
+<a href="bus.html" class="mobile-link">Transport</a>
+<a href="#realizacje" class="mobile-link">Realizacje</a>
+<a href="#opinie" class="mobile-link">Opinie</a>
+<a href="#kontakt" class="nav-cta mobile-link">Bezpłatna wycena</a>
+</nav>
+
+<section class="hero" id="hero">
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-stripe"></div>
+<div class="hero-inner">
+<div class="hero-sub"><div class="hero-dot"></div>Darmowa wycena | Barlinek +100 km</div>
+<h1 class="hero-headline">Mycie ciśnieniowe &bull;<br>Przeprowadzki &bull;<br>Transport &bull;<br>Utylizacja</h1>
+<p class="hero-tagline">Zajmujemy się profesjonalnym myciem powierzchni zewnętrznych oraz bezpiecznym przewozem mienia. Działamy szybko, terminowo i bez ukrytych kosztów.</p>
+<div class="hero-actions">
+<a href="tel:+48577299970" class="btn-primary">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+<span>Zadzwoń teraz</span>
+</a>
+<a href="#kontakt" class="btn-ghost">
+<span>Zostaw wiadomość</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+<div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<section class="stats-band">
+<div class="stats-inner">
+<div class="stat-item reveal">
+<svg class="stat-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span class="stat-label">7 dni w tygodniu</span>
+</div>
+<div class="stat-item reveal">
+<svg class="stat-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+<span class="stat-label">Darmowa wycena</span>
+</div>
+<div class="stat-item reveal">
+<svg class="stat-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<span class="stat-label">Lokalna firma</span>
+</div>
+<div class="stat-item reveal">
+<svg class="stat-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+<span class="stat-label">Szybki kontakt</span>
+</div>
+</div>
+</section>
+
+<section class="reviews-band" id="opinie">
+<div class="reviews-inner">
+<div class="reviews-head reveal">
+<div class="section-label">Zadowoleni klienci</div>
+<h2 class="section-title">Co o nas <em>mówią?</em></h2>
+</div>
+<div class="elfsight-safe-wrapper reveal">
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-978d9de7-24c8-4c1d-8587-09fc6adb796c" data-elfsight-app-lazy></div>
+</div>
+<div style="text-align:center; margin-top:3rem;" class="reveal">
+<a href="https://share.google/nujMLE3W3aIep8pYt" class="btn-primary" target="_blank" rel="noopener">
+<span>Zobacz wszystkie opinie Google</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+</div>
+</div>
+</section>
+
+<section class="divisions">
+<div class="divisions-inner">
+<div class="divisions-intro reveal">
+<div class="section-label" style="justify-content:center;">Co robimy</div>
+<h2 class="section-title" style="text-align:center;">Dwa działy. <em>Jedna firma.</em></h2>
+</div>
+<div class="division-wrap">
+
+<div class="division-block wash reveal" id="mycie">
+<div class="division-header">
+<div class="division-tag">Dział 01</div>
+<h3 class="division-heading">Mycie Ciśnieniowe</h3>
+<p class="division-desc">Profesjonalne czyszczenie powierzchni zewnętrznych z użyciem specjalistycznego sprzętu.</p>
+</div>
+<div class="division-services">
+<div class="division-service-item">
+<img src="kostka.jpg" alt="Kostka brukowa" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Kostka brukowa</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="dach.jpg" alt="Dachy" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Dachy</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="elewacja.jpg" alt="Elewacje" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Elewacje</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="tarasy.jpg" alt="Tarasy" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Tarasy</div></div>
+<div class="div-svc-arr"></div>
+</div>
+</div>
+<div class="division-footer">
+<a href="mycie.html" class="btn-primary" style="font-size:0.75rem;padding:0.7rem 1.4rem;">Zobacz więcej</a>
+<a href="#kontakt" class="btn-secondary">Wyceń usługę</a>
+</div>
+</div>
+
+<div class="division-block bus reveal" id="bus">
+<div class="division-header">
+<div class="division-tag">Dział 02</div>
+<h3 class="division-heading">Usługi Transportowe</h3>
+<p class="division-desc">Transport, przeprowadzki i utylizacja na terenie całej Polski. Bezpiecznie i na czas.</p>
+</div>
+<div class="division-services">
+<div class="division-service-item">
+<img src="przeprowadzki.jpg" alt="Przeprowadzki" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Przeprowadzki</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="transport.jpg" alt="Transport" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Transport</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="opr.jpg" alt="Opróżnianie" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Opróżnianie lokali</div></div>
+<div class="div-svc-arr"></div>
+</div>
+<div class="division-service-item">
+<img src="utylizacja.jpg" alt="Utylizacja" onerror="this.style.background='#1d3461';this.removeAttribute('src')">
+<div class="div-svc-text"><div class="div-svc-name">Utylizacja</div></div>
+<div class="div-svc-arr"></div>
+</div>
+</div>
+<div class="division-footer" style="margin-top:auto;">
+<a href="bus.html" class="btn-primary" style="font-size:0.75rem;padding:0.7rem 1.4rem;">Zobacz więcej</a>
+<a href="#kontakt" class="btn-secondary">Wyceń usługę</a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="before-after" id="realizacje">
+<div class="ba-inner">
+<div class="ba-header reveal">
+<div class="section-label">Nasze realizacje</div>
+<h2 class="section-title">Przed <em>i po.</em></h2>
+<p style="color:rgba(255,255,255,0.6);font-size:0.95rem;margin-top:0.8rem;">Przesuń suwak i zobacz efekty naszej pracy.</p>
+</div>
+
+<div class="ba-tabs reveal">
+<button class="ba-tab active" data-tab="mycie">Mycie Ciśnieniowe</button>
+<button class="ba-tab" data-tab="bus">Usługi Transportowe</button>
+</div>
+
+<div class="ba-slider-wrap reveal">
+<div id="baSlides"></div>
+<div class="ba-dots" id="baDots"></div>
+</div>
+
+<div class="ba-cta-wrap reveal">
+<p style="color:var(--white);font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:800;text-transform:uppercase;margin-bottom:1.2rem;">Chcesz taki efekt? Zadzwoń</p>
+<a href="tel:+48577299970" class="btn-primary" style="font-size:1rem;padding:1.2rem 2.5rem;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+<span>+48 577 299 970</span>
+</a>
+</div>
+
+</div>
+</section>
+
+<section class="contact-section" id="kontakt">
+<div class="contact-inner">
+<div class="contact-left reveal">
+<div>
+<div class="section-label">Napisz do nas</div>
+<h2 class="section-title" style="color:var(--navy);">Zróbmy to <em>razem.</em></h2>
+</div>
+<p class="section-desc" style="color:var(--gray-text);font-size:0.93rem;line-height:1.8;max-width:360px;">Bezpłatna wycena w ciągu 2 godzin. Zadzwoń, napisz na WhatsApp lub wypełnij formularz — odpowiemy błyskawicznie.</p>
+<div class="contact-items">
+<a href="tel:+48577299970" class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.22 19.79 19.79 0 01.06 2.54 2 2 0 012.04.54h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.4a16 16 0 006.72 6.72l1.21-1.21a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+<div><span class="contact-label">Telefon</span><span class="contact-value">+48 577 299 970</span></div>
+</a>
+<a href="https://wa.me/48577299970" target="_blank" rel="noopener" class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+<div><span class="contact-label">WhatsApp</span><span class="contact-value">+48 577 299 970</span></div>
+</a>
+<a href="mailto:kontakt@busbros.pl" class="contact-item">
+<div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+<div><span class="contact-label">E-mail</span><span class="contact-value">kontakt@busbros.pl</span></div>
+</a>
+</div>
+<div class="social-links">
+<a href="https://share.google/nujMLE3W3aIep8pYt" target="_blank" rel="noopener" class="social-btn" aria-label="Google"><img src="goo.png" alt="Google"></a>
+<a href="https://www.facebook.com/BusBrosBK" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><img src="fac.png" alt="Facebook"></a>
+<a href="https://www.instagram.com/busbros_transport_czyszczenie" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><img src="ins.jpg" alt="Instagram"></a>
+<a href="https://www.tiktok.com/@busbros_transport_mycie" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><img src="tik.jpg" alt="TikTok"></a>
+</div>
+</div>
+
+<form action="send.php" method="POST" enctype="multipart/form-data" class="contact-form reveal">
+<div class="form-title">Bezpłatna wycena</div>
+<div class="form-row">
+<div class="form-group"><label class="form-label" for="fname">Imię i nazwisko *</label><input class="form-input" type="text" id="fname" name="name" placeholder="Jan Kowalski" required></div>
+<div class="form-group"><label class="form-label" for="fphone">Telefon *</label><input class="form-input" type="tel" id="fphone" name="phone" placeholder="+48 000 000 000" required></div>
+</div>
+<div class="form-group"><label class="form-label" for="fservice">Rodzaj usługi</label>
+<select class="form-select" id="fservice" name="service">
+<option value="">Wybierz usługę...</option>
+<option value="kostka">Mycie kostki brukowej</option>
+<option value="elewacja">Mycie elewacji</option>
+<option value="dachy">Mycie dachu</option>
+<option value="taras">Mycie tarasu</option>
+<option value="przeprowadzka">Przeprowadzka</option>
+<option value="transport">Transport</option>
+<option value="utylizacja">Utylizacja</option>
+<option value="oproznienie">Opróżnianie lokali</option>
+</select>
+</div>
+<div class="form-group"><label class="form-label" for="fmsg">Opis zlecenia</label><textarea class="form-textarea" id="fmsg" name="message" placeholder="Opisz czego potrzebujesz — im więcej szczegółów, tym dokładniejsza wycena..."></textarea></div>
+
+<div class="form-group">
+<label class="form-label">Dodaj zdjęcia — szybciej przygotujemy wycenę</label>
+<label class="file-custom-btn" for="ffile">
+<svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+Wybierz pliki
+</label>
+<input type="file" id="ffile" name="attachment[]" accept="image/*" multiple class="file-hidden">
+<div id="file-chosen" class="file-chosen-text">Brak załączonych plików</div>
+</div>
+
+<button type="submit" class="form-submit"><span>Wyślij zapytanie &rarr;</span></button>
+</form>
+
+</div>
+</section>
+
+<footer>
+<div class="footer-inner">
+<a href="#hero" aria-label="BusBros"><img src="logo.png" alt="BusBros" class="footer-logo" onerror="this.style.display='none'"></a>
+<div class="footer-links">
+<a href="mycie.html">Mycie</a>
+<a href="bus.html">Transport</a>
+<a href="#realizacje">Realizacje</a>
+<a href="#opinie">Opinie</a>
+<a href="pp.html">Polityka prywatności</a>
+</div>
+<p class="footer-copy">&copy; 2026 BusBros. Strona stworzona przez <a href="https://str0nix.pl" target="_blank" rel="noopener">Str0nix.pl</a></p>
+</div>
+</footer>
+
+<div id="cookie-banner" style="position:fixed; bottom:0; left:0; width:100%; background:rgba(10,22,40,0.98); color:#ffffff; padding:15px 20px; z-index:9999; display:none; flex-direction:column; align-items:center; justify-content:center; gap:15px; text-align:center; font-family:'Barlow',sans-serif; font-size:14px; box-shadow:0 -4px 30px rgba(0,0,0,0.3); backdrop-filter:blur(10px);">
+<span style="max-width: 800px; line-height: 1.5;">Ta strona korzysta z plików cookies do celów statystycznych, marketingowych (w tym Google Ads) oraz poprawnego działania. Czy zgadzasz się na ich wykorzystanie?</span>
+<div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+<button id="accept-cookies" style="background:#F6E207; color:#0a1628; padding:10px 20px; border:none; border-radius:4px; font-weight:800; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:transform 0.3s;">Akceptuję</button>
+<button id="reject-cookies" style="background:transparent; color:#ffffff; padding:10px 20px; border:1px solid rgba(255,255,255,0.3); border-radius:4px; font-weight:800; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:transform 0.3s;">Odrzucam</button>
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+var banner = document.getElementById("cookie-banner");
+if (!localStorage.getItem("cookiesDecision")) {
+banner.style.display = "flex";
+}
+document.getElementById("accept-cookies").addEventListener("click", function() {
+localStorage.setItem("cookiesDecision", "accepted");
+banner.style.display = "none";
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'update', {
+'ad_storage': 'granted',
+'analytics_storage': 'granted'
+});
+});
+document.getElementById("reject-cookies").addEventListener("click", function() {
+localStorage.setItem("cookiesDecision", "rejected");
+banner.style.display = "none";
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'update', {
+'ad_storage': 'denied',
+'analytics_storage': 'denied'
+});
+});
+});
+
+const BA_DATA = {
+mycie: [
+{before:"bf1.jpg",after:"af1.jpg",label:"Mycie Ciśnieniowe"},
+{before:"before.jpg",after:"after.jpg",label:"Mycie Ciśnieniowe"}
+],
+bus: [
+{before:"before2.jpg",after:"after2.jpg",label:"Usługi Transportowe"},
+{before:"bff1.jpg",after:"aff1.jpg",label:"Usługi Transportowe"}
+]
+};
+
+let baCurrent = 0;
+let currentTab = 'mycie';
+
+function buildBA(tabKey) {
+const slides = document.getElementById('baSlides');
+const dots = document.getElementById('baDots');
+slides.innerHTML = ''; dots.innerHTML = '';
+baCurrent = 0;
+
+BA_DATA[tabKey].forEach((pair, i) => {
+const slide = document.createElement('div');
+slide.className = 'ba-slide' + (i === 0 ? ' active' : '');
+slide.innerHTML = `<div class="ba-compare"><div class="ba-img-wrap"><img src="${pair.after}" alt="Po" class="ba-img-after" onerror="this.style.background='#1d3461'"><div class="ba-img-before-wrap" style="clip-path:inset(0 50% 0 0)"><img src="${pair.before}" alt="Przed" class="ba-img-before" onerror="this.style.background='#2a3f6b'"></div><div class="ba-handle" style="left:50%"><div class="ba-handle-circle"><svg viewBox="0 0 24 24"><path d="M8 5l-5 7 5 7M16 5l5 7-5 7"/></svg></div></div><span class="ba-label ba-label-before">PRZED</span><span class="ba-label ba-label-after">PO</span><span class="ba-service-tag">${pair.label}</span></div></div>`;
+slides.appendChild(slide);
+
+const dot = document.createElement('div');
+dot.className = 'ba-dot' + (i === 0 ? ' active' : '');
+dot.addEventListener('click', () => goBA(i));
+dots.appendChild(dot);
+
+initBA(slide.querySelector('.ba-compare'));
+});
+}
+
+function goBA(idx) {
+document.querySelectorAll('.ba-slide').forEach((s,i) => { s.classList.toggle('active', i === idx); });
+document.querySelectorAll('.ba-dot').forEach((d,i) => { d.classList.toggle('active', i === idx); });
+baCurrent = idx;
+}
+
+function initBA(el) {
+const beforeWrap = el.querySelector('.ba-img-before-wrap');
+const handle = el.querySelector('.ba-handle');
+let dragging = false;
+function setPos(x) {
+const rect = el.getBoundingClientRect();
+let pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+handle.style.left = (pct * 100).toFixed(2) + '%';
+beforeWrap.style.clipPath = `inset(0 ${(100 - pct * 100).toFixed(2)}% 0 0)`;
+}
+handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
+window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+window.addEventListener('mouseup', () => { dragging = false; });
+el.addEventListener('touchstart', e => { dragging = true; e.preventDefault(); }, {passive:false});
+window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, {passive:true});
+window.addEventListener('touchend', () => { dragging = false; });
+}
+
+document.querySelectorAll('.ba-tab').forEach(btn => {
+btn.addEventListener('click', function() {
+document.querySelectorAll('.ba-tab').forEach(b => b.classList.remove('active'));
+this.classList.add('active');
+currentTab = this.getAttribute('data-tab');
+buildBA(currentTab);
+});
+});
+buildBA(currentTab);
+
+document.getElementById('ffile').addEventListener('change', function() {
+const text = document.getElementById('file-chosen');
+if(this.files && this.files.length > 1) {
+text.textContent = `Wybrano ${this.files.length} pliki/ów`;
+} else if (this.files && this.files.length === 1) {
+text.textContent = this.files[0].name;
+} else {
+text.textContent = 'Brak załączonych plików';
+}
+});
+
+const nav = document.getElementById('mainNav');
+const stickyCta = document.getElementById('stickyCta');
+window.addEventListener('scroll', () => {
+nav.classList.toggle('scrolled', window.scrollY > 50);
+stickyCta.classList.toggle('visible', window.scrollY > 400);
+}, {passive:true});
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+function toggleMenu() {
+const isOpen = mobileMenu.classList.contains('open');
+mobileMenu.classList.toggle('open');
+hamburger.classList.toggle('open');
+hamburger.setAttribute('aria-expanded', !isOpen);
+document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+hamburger.addEventListener('click', toggleMenu);
+document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', toggleMenu));
+
+const observer = new IntersectionObserver(entries => {
+entries.forEach((entry, i) => {
+if(entry.isIntersecting){
+entry.target.style.transitionDelay = (Math.floor(i % 5) * 0.08) + 's';
+entry.target.classList.add('active');
+observer.unobserve(entry.target);
+}
+});
+}, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
